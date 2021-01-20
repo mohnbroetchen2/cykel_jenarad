@@ -19,6 +19,7 @@ from .models import (
     Rent,
     Station,
     VehicleType,
+    InvoxiaTrackerUpdate,
 )
 
 OSM_URL = "https://www.openstreetmap.org/?mlat={lat}&mlon={lng}#map=16/{lat}/{lng}"
@@ -253,3 +254,4 @@ admin.site.register(VehicleType, admin.ModelAdmin)
 admin.site.register(LocationTrackerType, admin.ModelAdmin)
 admin.site.register(LockType, admin.ModelAdmin)
 admin.site.register(BikeSharePreferences, PreferencesAdmin)
+admin.site.register(InvoxiaTrackerUpdate, admin.ModelAdmin)

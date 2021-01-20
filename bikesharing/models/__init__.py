@@ -1,3 +1,4 @@
+from bikesharing.models.invoxiatrackerupdate import InvoxiaTrackerUpdate
 from bikesharing.models.bike import Bike
 from bikesharing.models.bike_share_preferences import BikeSharePreferences
 from bikesharing.models.location import Location
@@ -10,6 +11,7 @@ from bikesharing.models.station import Station
 from bikesharing.models.vehicle_type import VehicleType
 
 __all__ = [
+    "InvoxiaTrackerUpdate",
     "VehicleType",
     "Bike",
     "LocationTrackerType",
