@@ -24,6 +24,7 @@ class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
         try:
             tracker_updates = [InvoxiaTrackerUpdate(**item) for item in validated_data]
             tracker_update = InvoxiaTrackerUpdate.objects.bulk_create(tracker_updates)
+            logger.info("Invoxia Update erstellt")
             for update in tracker_update:
                 tracker = LocationTracker.objects.get(device_id=update.serial)
                 tracker.last_reported = now()
