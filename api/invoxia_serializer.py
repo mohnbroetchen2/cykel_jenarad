@@ -119,7 +119,9 @@ class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
                             action_type=action_type,
                             data=data,
                             )
-        except Exception as e::
+        except Exception as e:
+            logger.info("error: {}".format(e))
+            return ("something went wrong")
 
         return tracker_update
 
