@@ -5,6 +5,8 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.syndication.views import Feed
+import logging
+
 from django.core.paginator import Paginator
 from django.urls import reverse
 from django.utils.feedgenerator import Rss201rev2Feed
@@ -30,10 +32,12 @@ from rest_framework.views import exception_handler
 from bikesharing.models import Bike, Location, LocationTracker, Rent, Station
 from cykel.models import CykelLogEntry
 
+logger = logging.getLogger('mylogger')
 
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def InvoxiaUpdateBikeLocation(request):
+    logger.info(request.body)
     #device_id = request.data.get("serial")
     someminutesago = now() - timedelta(minutes=15)
     x_api_key = request.META.get('HTTP_X_API_KEY')
@@ -45,7 +49,7 @@ def InvoxiaUpdateBikeLocation(request):
     serializer = InvoxiaLocationTrackerUpdateSerializer(data=request.data, many=True)
     if not serializer.is_valid():
         return Response(serializer.errors, status=400)
-    serializer.save()
+    #serializer.save()
     #status = serializer.save()
     
 

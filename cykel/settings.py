@@ -252,3 +252,29 @@ if SENTRY_DSN is not None:
         dsn=SENTRY_DSN,
         integrations=[DjangoIntegration()],
     )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'simple': {
+            'format': '[%(asctime)s] %(levelname)s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'myloghandler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/api.log'),
+        },
+    },
+    'loggers': {
+        'mylogger': {
+            'handlers': ['myloghandler'],
+            'level': 'DEBUG',
+            'formatter' : 'simple',
+            'propagate': True,
+        },
+    },
+} 
