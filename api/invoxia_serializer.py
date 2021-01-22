@@ -28,7 +28,8 @@ class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
             for update in tracker_update:
                 tracker = LocationTracker.objects.get(device_id=update.serial)
                 tracker.last_reported = now()
-                tracker.battery_voltage = update.energy_level
+                #tracker.battery_voltage = update.energy_level
+                tracker.battery_voltage = 87
                 tracker.save()
                 if (
                     tracker.tracker_type is not None
