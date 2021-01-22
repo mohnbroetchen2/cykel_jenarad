@@ -33,7 +33,7 @@ class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
                 if (
                     tracker.tracker_type is not None
                 ):
-                    #data = {"voltage": self.instance.battery_voltage}
+                    data = {"voltage": 87}
                     action_type = None
                     action_type_prefix = "cykel.tracker"
 
