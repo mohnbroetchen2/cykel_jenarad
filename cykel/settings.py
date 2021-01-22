@@ -38,6 +38,7 @@ DEBUG = env("DEBUG")
 ALLOWED_HOSTS  = ['0.0.0.0','127.0.0.1','cykel.jenarad.de','localhost']
 #ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
+INVOXIA_API_KEY = env("INVOXIA_API_KEY")
 
 # Application definition
 
