@@ -18,6 +18,7 @@ from cykel.models import CykelLogEntry
 from rest_framework import exceptions
 import logging
 from preferences import preferences
+from django.contrib.gis.measure import D
 
 class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
     def create(self, validated_data):
