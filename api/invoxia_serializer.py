@@ -38,7 +38,7 @@ class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
                     action_type_prefix = "cykel.tracker"
 
                     if tracker.bike:
-                        data["bike_id"] = self.instance.bike.pk
+                        data["bike_id"] = tracker.bike.pk
                         action_type_prefix = "cykel.bike.tracker"
 
                     if (
@@ -59,7 +59,7 @@ class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
                         somehoursago = now() - timedelta(hours=48)
                         CykelLogEntry.create_unless_time(
                             somehoursago,
-                            content_object=self.instance,
+                            content_object=tracker,
                             action_type=action_type,
                             data=data,
                         )

@@ -1,4 +1,5 @@
 from .invoxia_serializer import InvoxiaLocationTrackerUpdateSerializer
+from django.conf import settings
 from allauth.socialaccount.models import SocialApp
 from django.contrib.auth import get_user_model
 from django.contrib.gis.geos import Point
@@ -41,7 +42,8 @@ def InvoxiaUpdateBikeLocation(request):
     #device_id = request.data.get("serial")
     someminutesago = now() - timedelta(minutes=15)
     x_api_key = request.META.get('HTTP_X_API_KEY')
-    if x_api_key != "7IUpcjcj.fXzNRFtonGiAwLUNzOWMdtY7Q3G7xdqN":
+    #if x_api_key != "7IUpcjcj.fXzNRFtonGiAwLUNzOWMdtY7Q3G7xdqN":
+    if x_api_key != settings.INVOXIA_API_KEY:
         return Response({"error": "wrong key".format(x_api_key)}, status=400)
     #if not (device_id):
     #    return Response({"error": "serial missing"}, status=400)
@@ -49,7 +51,7 @@ def InvoxiaUpdateBikeLocation(request):
     serializer = InvoxiaLocationTrackerUpdateSerializer(data=request.data, many=True)
     if not serializer.is_valid():
         return Response(serializer.errors, status=400)
-    #serializer.save()
+    serializer.save()
     #status = serializer.save()
     
 
