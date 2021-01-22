@@ -17,6 +17,7 @@ from bikesharing.models import (
 from cykel.models import CykelLogEntry
 from rest_framework import exceptions
 import logging
+from preferences import preferences
 
 class ListInvoxiaLocationTrackerUpdateSerializer(serializers.ListSerializer):
     def create(self, validated_data):
