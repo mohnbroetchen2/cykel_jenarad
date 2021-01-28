@@ -13,7 +13,7 @@ from .views import (
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r"stations/locations", StationViewSet, basename="station")
+router.register(r"stations", StationViewSet, basename="station")
 router.register(r"rent", RentViewSet, basename="rent")
 router.register(r"maintenance", MaintenanceViewSet, basename="maintenance")
 
