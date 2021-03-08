@@ -41,6 +41,9 @@ from .serializers import (
     StationSerializer,
     UserDetailsSerializer,
 )
+import logging
+
+logger = logging.getLogger('mylogger')
 
 
 class BikeViewSet(viewsets.ReadOnlyModelViewSet):
@@ -166,6 +169,7 @@ class RentViewSet(
 @permission_classes([HasAPIKey])
 def updatebikelocation(request):
     device_id = request.data.get("device_id")
+    logger.info("device_id: {}".format(device_id))
     if not (device_id):
         return Response({"error": "device_id missing"}, status=400)
     try:

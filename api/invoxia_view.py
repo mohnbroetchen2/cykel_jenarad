@@ -38,7 +38,7 @@ logger = logging.getLogger('mylogger')
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def InvoxiaUpdateBikeLocation(request):
-    logger.info(request.body)
+    #logger.info(request.body)
     #device_id = request.data.get("serial")
     someminutesago = now() - timedelta(minutes=15)
     x_api_key = request.META.get('HTTP_X_API_KEY')
