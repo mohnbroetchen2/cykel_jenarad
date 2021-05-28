@@ -63,6 +63,10 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.twitter",
     "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.stackexchange",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.amazon",
+    "allauth.socialaccount.providers.dropbox",
+    "allauth.socialaccount.providers.facebook",
     "fragdenstaat_auth",
     "eventphone_auth",
     "allauth.socialaccount.providers.slack",
@@ -231,18 +235,32 @@ AUTH_USER_MODEL = "cykel.User"
 
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_VERIFICATION = None
-SOCIALACCOUNT_QUERY_EMAIL = False
+SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_ADAPTER = "cykel.auth.account_adapter.NoSignupAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "cykel.auth.account_adapter.SocialAccountAdapter"
 
-SOCIALACCOUNT_PROVIDERS = {}
+#SOCIALACCOUNT_PROVIDERS = {}
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
+SOCIALACCOUNT_PROVIDERS = {
+    'openid': {
+        'SERVERS': [
+            dict(id='yahoo',
+                 name='Yahoo',
+                 openid_url='http://me.yahoo.com'),
+            dict(id='hyves',
+                 name='Hyves',
+                 openid_url='http://hyves.nl'),
+            ]
+    }
+}
+
 
 OWNCLOUD_URL = env("OWNCLOUD_URL", default=None)
 if OWNCLOUD_URL is not None:
     INSTALLED_APPS.append("owncloud_auth")
     SOCIALACCOUNT_PROVIDERS["sub"] = {"SERVER": OWNCLOUD_URL}
 
-AUTOENROLLMENT_PROVIDERS = env.list("AUTOENROLLMENT_PROVIDERS", default=[])
+AUTOENROLLMENT_PROVIDERS = env.list("AUTOENROLLMENT_PROVIDERS",default=["Google","Amazon","GitHub","amazon","allauth.socialaccount.providers.amazon","dropbox","google","allauth.socialaccount.providers.google","allauth.socialaccount.providers.github","github","fragdenstaat",])
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

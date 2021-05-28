@@ -8,9 +8,7 @@ def create_and_assign_tracker_types(apps, schema_editor):
     LocationTracker = apps.get_model("bikesharing", "LocationTracker")
     LocationTrackerType = apps.get_model("bikesharing", "LocationTrackerType")
     used_tracker_types = []
-    for tracker in LocationTracker.objects.order_by("tracker_type_str").distinct(
-        "tracker_type_str"
-    ):
+    for tracker in LocationTracker.objects.order_by("tracker_type_str"): #.distinct("tracker_type_str"):
         if tracker.tracker_type_str is not None:
             used_tracker_types.append(tracker.tracker_type_str)
     for tracker_type in used_tracker_types:

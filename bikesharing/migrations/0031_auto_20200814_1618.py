@@ -9,7 +9,7 @@ def create_and_assign_vehicle_types(apps, schema_editor):
     Bike = apps.get_model("bikesharing", "Bike")
     VehicleType = apps.get_model("bikesharing", "VehicleType")
     used_bike_types = []
-    for bike in Bike.objects.order_by("bike_type").distinct("bike_type"):
+    for bike in Bike.objects.order_by("bike_type"): #.distinct("bike_type"):
         used_bike_types.append(bike.bike_type)
     if len(used_bike_types) == 0:
         used_bike_types = ["BI"]

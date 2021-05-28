@@ -5,7 +5,7 @@ def create_and_assign_lock_types(apps, schema_editor):
     Lock = apps.get_model("bikesharing", "Lock")
     LockType = apps.get_model("bikesharing", "LockType")
     used_form_factors = []
-    for lock in Lock.objects.order_by("form_factor").distinct("form_factor"):
+    for lock in Lock.objects.order_by("form_factor"): #.distinct("form_factor"):
         used_form_factors.append(lock.form_factor)
     if len(used_form_factors) == 0:
         used_form_factors = ["CL"]
